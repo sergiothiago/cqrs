@@ -79,7 +79,6 @@
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.dataformat:jackson-dataformat-toml:2.17.2" level="project" />
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-core:2.17.2" level="project" />
     <orderEntry type="library" name="Maven: com.google.code.gson:gson:2.10.1" level="project" />
-    <orderEntry type="library" name="Maven: org.flywaydb:flyway-mysql:10.10.0" level="project" />
     <orderEntry type="library" name="Maven: org.springdoc:springdoc-openapi-starter-webmvc-ui:2.1.0" level="project" />
     <orderEntry type="library" name="Maven: org.springdoc:springdoc-openapi-starter-webmvc-api:2.1.0" level="project" />
     <orderEntry type="library" name="Maven: org.springdoc:springdoc-openapi-starter-common:2.1.0" level="project" />
@@ -89,7 +88,7 @@
     <orderEntry type="library" name="Maven: jakarta.validation:jakarta.validation-api:3.0.2" level="project" />
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.17.2" level="project" />
     <orderEntry type="library" name="Maven: org.webjars:swagger-ui:4.18.2" level="project" />
-    <orderEntry type="library" scope="RUNTIME" name="Maven: com.mysql:mysql-connector-j:8.3.0" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Maven: com.h2database:h2:2.2.224" level="project" />
     <orderEntry type="library" name="Maven: org.projectlombok:lombok:1.18.34" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.springframework.boot:spring-boot-starter-test:3.3.3" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.springframework.boot:spring-boot-test:3.3.3" level="project" />
