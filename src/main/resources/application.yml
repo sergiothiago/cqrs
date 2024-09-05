@@ -1,0 +1,17 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/cqrs_database?useTimezone=true&serverTimezone=UTC
+    username: root
+    password: root
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: none
+    show-sql: false
+springdoc:
+  api-docs:
+    version: 1.0
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
