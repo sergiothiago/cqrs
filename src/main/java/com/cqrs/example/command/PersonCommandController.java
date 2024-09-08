@@ -22,15 +22,15 @@ public class PersonCommandController {
     private PersonCommandService personCommandService;
 
     @PostMapping
-    public ResponseEntity<Person> sayHello(@RequestBody PersonDTO personDTO) {
-        Person personSaved = personCommandService.save(personDTO);
-        return ResponseEntity.status(HttpStatus.CREATED).body(personSaved);
+    public ResponseEntity<PersonDTO> sayHello(@RequestBody PersonDTO personDTO) {
+        PersonDTO personDTOSaved = personCommandService.save(personDTO);
+        return ResponseEntity.status(HttpStatus.CREATED).body(personDTOSaved);
     }
 
     @PutMapping
-    public ResponseEntity<Person> update(@RequestBody PersonDTO personDTO) throws ResourceNotFoundException {
-        Person personUpdated = personCommandService.update(personDTO);
-        return ResponseEntity.status(HttpStatus.OK).body(personUpdated);
+    public ResponseEntity<PersonDTO> update(@RequestBody PersonDTO personDTO) throws ResourceNotFoundException {
+        PersonDTO personDTOUpdated = personCommandService.update(personDTO);
+        return ResponseEntity.status(HttpStatus.OK).body(personDTOUpdated);
     }
 
     @DeleteMapping("/{id}")
