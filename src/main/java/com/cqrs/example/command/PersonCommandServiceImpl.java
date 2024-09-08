@@ -1,6 +1,8 @@
 package com.cqrs.example.command;
 
+import com.cqrs.example.dto.PersonDTO;
 import com.cqrs.example.exceptions.ResourceNotFoundException;
+import com.cqrs.example.mapper.GenericMapper;
 import com.cqrs.example.model.Person;
 import com.cqrs.example.query.PersonQueryServiceImpl;
 import com.cqrs.example.repository.PersonRepository;
@@ -22,17 +24,24 @@ public class PersonCommandServiceImpl implements PersonCommandService{
     @Autowired
     private PersonQueryServiceImpl personQueryServiceImpl;
 
+
     @Transactional
-    public Person save(Person person){
+    public Person save(PersonDTO personDTO){
         logger.info("Save person");
-        return personRepository.save(person);
+
+        Person person =
+                GenericMapper.parseObject(personDTO, Person.class);
+
+        return GenericMapper.parseObject(personRepository.save(person), Person.class);
     }
 
     @Transactional
-    public Person update(Person person) throws ResourceNotFoundException {
-        personQueryServiceImpl.findById(person.getId());
-        logger.info("Save person");
-        return personRepository.save(person);
+    public Person update(PersonDTO personDTO) throws ResourceNotFoundException {
+        personQueryServiceImpl.findById(personDTO.getId());
+        Person person =
+                GenericMapper.parseObject(personDTO, Person.class);
+        logger.info("update person");
+        return GenericMapper.parseObject(personRepository.save(person), Person.class);
     }
 
     @Transactional

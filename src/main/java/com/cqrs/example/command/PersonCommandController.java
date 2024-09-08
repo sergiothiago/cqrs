@@ -1,5 +1,6 @@
 package com.cqrs.example.command;
 
+import com.cqrs.example.dto.PersonDTO;
 import com.cqrs.example.exceptions.ResourceNotFoundException;
 import com.cqrs.example.model.Person;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,14 +22,14 @@ public class PersonCommandController {
     private PersonCommandService personCommandService;
 
     @PostMapping
-    public ResponseEntity<Person> sayHello(@RequestBody Person person) {
-        Person personSaved = personCommandService.save(person);
+    public ResponseEntity<Person> sayHello(@RequestBody PersonDTO personDTO) {
+        Person personSaved = personCommandService.save(personDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(personSaved);
     }
 
     @PutMapping
-    public ResponseEntity<Person> update(@RequestBody Person person) throws ResourceNotFoundException {
-        Person personUpdated = personCommandService.update(person);
+    public ResponseEntity<Person> update(@RequestBody PersonDTO personDTO) throws ResourceNotFoundException {
+        Person personUpdated = personCommandService.update(personDTO);
         return ResponseEntity.status(HttpStatus.OK).body(personUpdated);
     }
 
