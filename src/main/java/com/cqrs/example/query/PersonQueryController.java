@@ -1,6 +1,7 @@
 package com.cqrs.example.query;
 
 import com.cqrs.example.command.PersonCommandService;
+import com.cqrs.example.dto.PersonDTO;
 import com.cqrs.example.exceptions.ResourceNotFoundException;
 import com.cqrs.example.model.Person;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,16 +29,16 @@ public class PersonQueryController {
 
     @GetMapping
     @Transactional(readOnly = true)
-    public ResponseEntity<List<Person>> findAll() {
-        List<Person> persons = personQueryService.findAll();
-        return ResponseEntity.status(HttpStatus.OK).body(persons);
+    public ResponseEntity<List<PersonDTO>> findAll() {
+        List<PersonDTO> personDTOS = personQueryService.findAll();
+        return ResponseEntity.status(HttpStatus.OK).body(personDTOS);
     }
 
     @GetMapping("/{id}")
     @Transactional(readOnly = true)
-    public ResponseEntity<Person> findAll(@PathVariable("id") Long id) throws ResourceNotFoundException {
-        Person person = personQueryService.findById(id);
-        return ResponseEntity.status(HttpStatus.OK).body(person);
+    public ResponseEntity<PersonDTO> findAll(@PathVariable("id") Long id) throws ResourceNotFoundException {
+        PersonDTO personDTO = personQueryService.findById(id);
+        return ResponseEntity.status(HttpStatus.OK).body(personDTO);
     }
 
 }

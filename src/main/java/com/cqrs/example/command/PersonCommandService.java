@@ -6,9 +6,9 @@ import com.cqrs.example.model.Person;
 
 public interface PersonCommandService {
 
-    public Person save(PersonDTO personDTO);
+    public PersonDTO save(PersonDTO personDTO);
 
-    public Person update(PersonDTO personDTO) throws ResourceNotFoundException;
+    public PersonDTO update(PersonDTO personDTO) throws ResourceNotFoundException;
 
     public void delete(Long id) throws ResourceNotFoundException;
 }

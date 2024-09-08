@@ -26,22 +26,23 @@ public class PersonCommandServiceImpl implements PersonCommandService{
 
 
     @Transactional
-    public Person save(PersonDTO personDTO){
+    public PersonDTO save(PersonDTO personDTO){
         logger.info("Save person");
 
         Person person =
                 GenericMapper.parseObject(personDTO, Person.class);
 
-        return GenericMapper.parseObject(personRepository.save(person), Person.class);
+        return GenericMapper.parseObject(personRepository.save(person), PersonDTO.class);
     }
 
     @Transactional
-    public Person update(PersonDTO personDTO) throws ResourceNotFoundException {
+    public PersonDTO update(PersonDTO personDTO) throws ResourceNotFoundException {
         personQueryServiceImpl.findById(personDTO.getId());
         Person person =
                 GenericMapper.parseObject(personDTO, Person.class);
         logger.info("update person");
-        return GenericMapper.parseObject(personRepository.save(person), Person.class);
+
+        return GenericMapper.parseObject(personRepository.save(person), PersonDTO.class);
     }
 
     @Transactional
