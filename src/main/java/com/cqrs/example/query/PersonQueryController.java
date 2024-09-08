@@ -19,6 +19,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
+
 @RestController
 @RequestMapping("/query/persons")
 public class PersonQueryController {
@@ -36,8 +40,10 @@ public class PersonQueryController {
 
     @GetMapping("/{id}")
     @Transactional(readOnly = true)
-    public ResponseEntity<PersonDTO> findAll(@PathVariable("id") Long id) throws ResourceNotFoundException {
+    public ResponseEntity<PersonDTO> findById(@PathVariable("id") Long id) throws ResourceNotFoundException {
         PersonDTO personDTO = personQueryService.findById(id);
+        personDTO.add(linkTo(methodOn(PersonQueryController.class).findById(id)).withSelfRel());
+
         return ResponseEntity.status(HttpStatus.OK).body(personDTO);
     }
 

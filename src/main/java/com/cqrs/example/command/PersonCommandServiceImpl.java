@@ -37,7 +37,7 @@ public class PersonCommandServiceImpl implements PersonCommandService{
 
     @Transactional
     public PersonDTO update(PersonDTO personDTO) throws ResourceNotFoundException {
-        personQueryServiceImpl.findById(personDTO.getId());
+        personQueryServiceImpl.findById(personDTO.getKey());
         Person person =
                 GenericMapper.parseObject(personDTO, Person.class);
         logger.info("update person");

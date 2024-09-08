@@ -1,27 +1,42 @@
 package com.cqrs.example.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.github.dozermapper.core.Mapping;
 import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import org.springframework.hateoas.RepresentationModel;
 
+import java.io.Serializable;
+
+@NoArgsConstructor
 @Data
 @Builder
-@NoArgsConstructor
 @AllArgsConstructor
-public class PersonDTO {
+@EqualsAndHashCode
+@JsonPropertyOrder({"id", "firstName", "lastName", "address", "gender"})
+public class PersonDTO extends RepresentationModel<PersonDTO> implements Serializable {
 
-    private Long id;
-    @NotNull(message = "firstName must not be null")
+
+    @JsonProperty("id")
+    @Mapping("id")
+    private Long key;
+
+    @JsonProperty("firstName")
+    @Column(name = "first_name")
     private String firstName;
-    private String lastName;
-    @NotNull(message = "address must not be null")
-    private String address;
-    private String gender;
 
+    @JsonProperty("lastName")
+    @Column(name = "last_name")
+    private String lastName;
+
+    @JsonProperty("address")
+    private String address;
+
+    @JsonProperty("gender")
+    private String gender;
 }

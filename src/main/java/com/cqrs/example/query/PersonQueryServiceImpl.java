@@ -35,6 +35,7 @@ public class PersonQueryServiceImpl implements PersonQueryService {
 
     public PersonDTO findById(Long id) throws ResourceNotFoundException {
         logger.info("FindById");
+
         Person person = personRepository.findById(id)
                 .orElseThrow( () -> new ResourceNotFoundException("Id " + id + "not found"));
 
