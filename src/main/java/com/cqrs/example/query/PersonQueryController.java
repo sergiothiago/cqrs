@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
@@ -35,7 +36,17 @@ public class PersonQueryController {
     @Transactional(readOnly = true)
     public ResponseEntity<List<PersonDTO>> findAll() {
         List<PersonDTO> personDTOS = personQueryService.findAll();
-        return ResponseEntity.status(HttpStatus.OK).body(personDTOS);
+
+        List<PersonDTO> personDTOS2 = personDTOS.stream().map((personDTO) ->
+        {
+            try {
+                return personDTO.add(linkTo(methodOn(PersonQueryController.class).findById(personDTO.getKey())).withSelfRel());
+            } catch (ResourceNotFoundException e) {
+                throw new RuntimeException(e);
+            }
+        }).collect(Collectors.toList());
+
+        return ResponseEntity.status(HttpStatus.OK).body(personDTOS2);
     }
 
     @GetMapping("/{id}")
