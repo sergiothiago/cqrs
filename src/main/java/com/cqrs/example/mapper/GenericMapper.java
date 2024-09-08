@@ -2,6 +2,7 @@ package com.cqrs.example.mapper;
 
 import com.github.dozermapper.core.DozerBeanMapperBuilder;
 import com.github.dozermapper.core.Mapper;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
